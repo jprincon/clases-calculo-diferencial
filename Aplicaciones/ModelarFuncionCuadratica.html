@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Fórmula General de Segundo Grado</title>
+</head>
+
+<body style="margin: 30px;">
+    <div class="jumbotron">
+        <h1 class="display-4">Fórmula General de Segundo Grado</h1>
+        <p class="lead">Mediante esta aplicación se resuelve ecuaciones de segundo grado</p>
+        <hr class="my-4">
+        <p>Autor: Julián Andrés Rincón Penagos</p>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header bg-dark text-white">Datos</h5>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label>Valor de x1</label>
+                <input type="number" id="valx1" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Valor de y1</label>
+                <input type="number" id="valy1" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Valor de x2</label>
+                <input type="number" id="valx2" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Valor de y2</label>
+                <input type="number" id="valy2" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Valor de x3</label>
+                <input type="number" id="valx3" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Valor de y3</label>
+                <input type="number" id="valy3" class="form-control">
+            </div>
+
+            <button class="btn btn-success" onclick="calcular()">Calcular</button>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <h5 class="card-header bg-dark text-white">Resultado</h5>
+        <div class="card-body">
+            <p style="font-size: 24px;" id="result">Resultado</p>
+        </div>
+    </div>
+
+    <script>
+        function determinante(a, b, c, d, e, f, g, h, i) {
+            return a * (e * i - h * f) - b * (d * i - f * g) + c * (d * h - e * g);
+        }
+
+        function calcular() {
+            var x1 = document.getElementById('valx1').value;
+            var y1 = document.getElementById('valy1').value;
+            var x2 = document.getElementById('valx2').value;
+            var y2 = document.getElementById('valy2').value;
+            var x3 = document.getElementById('valx3').value;
+            var y3 = document.getElementById('valy3').value;
+
+            var result = document.getElementById('result');
+
+            var dets = determinante(Math.pow(x1, 2), x1, 1, Math.pow(x2, 2), x2, 1, Math.pow(x3, 2), x3, 1);
+            var deta = determinante(y1, x1, 1, y2, x2, 1, y3, x3, 1);
+            var detb = determinante(Math.pow(x1, 2), y1, 1, Math.pow(x2, 2), y2, 1, Math.pow(x3, 2), y3, 1);
+            var detc = determinante(Math.pow(x1, 2), x1, y1, Math.pow(x2, 2), x2, y2, Math.pow(x3, 2), x3, y3);
+
+            var A = deta / dets;
+            var B = detb / dets;
+            var C = detc / dets;
+
+            result.innerHTML = `f(x) = ${ A }x^2 + ${ B }x + ${ C }`;
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
